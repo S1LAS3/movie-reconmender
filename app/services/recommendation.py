@@ -58,8 +58,19 @@ def get_top_genres(user_id):
 
 #retorna uma lista de filmes ja assistidos pelo usuario
 def get_watched_movies(user_id):
-    return{r[movie_id] for r in ratings if r[user_id] == user_id}
+    return{r["movie_id"] for r in ratings if r[user_id] == user_id}
 
 
 def recomend_movies(user_id):
     top_genre = get_top_genres(user_id)
+
+    if not top_genre:
+        return[]
+    
+    watched = get_watched_movies(user_id)
+
+    recomendations = []
+
+    for movie in movies:
+        if movie["genre"] == top_genre and movie["id"] not in watched:
+            recomendations.append
