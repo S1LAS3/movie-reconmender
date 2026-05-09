@@ -23,7 +23,7 @@ ratings = [
 
 #função para percorrer a lista de avaliações (ratings) e retorna somente as que foram feitas pelo usuario aparti de seu user_id
 def get_user_ratings(user_id):
-    return [r for r in ratings if r["user_id"] == user_id]
+    return [r for r in ratings if r["user_id"] == user_id and r["rating" >= 4]]
 
 
 
@@ -43,9 +43,6 @@ def get_favorite_genres(user_id):
     
     return genre_cont
 
-genre_cont = get_favorite_genres(1)
-print(genre_cont)
-
 #função que recebe o id do usuario o genero com mais avaliações
 def get_top_genres(user_id):
     genres = get_favorite_genres(user_id)
@@ -58,10 +55,10 @@ def get_top_genres(user_id):
 
 #retorna uma lista de filmes ja assistidos pelo usuario
 def get_watched_movies(user_id):
-    return{r["movie_id"] for r in ratings if r[user_id] == user_id}
+    return{r["movie_id"] for r in ratings if r["user_id"] == user_id}
 
 
-def recomend_movies(user_id):
+def recommend_movies(user_id):
     top_genre = get_top_genres(user_id)
 
     if not top_genre:
@@ -69,8 +66,12 @@ def recomend_movies(user_id):
     
     watched = get_watched_movies(user_id)
 
-    recomendations = []
+    recommendations = []
 
     for movie in movies:
         if movie["genre"] == top_genre and movie["id"] not in watched:
-            recomendations.append
+            recommendations.append
+
+    return recommendations
+
+
