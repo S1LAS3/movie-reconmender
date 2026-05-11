@@ -132,12 +132,8 @@ def recommend_movies(user_id):
 #caso a lista tiver dois elementos
     else:
         for movie in movies:
-            if (movie["genre"] == top_genre[0] or movie["genre"] == top_genre[1]) and movie["id"] not in watched:
+            if (movie["genre"] == top_genre[0] or movie["genre"] == top_genre[1]) and movie["id"] not in watched :
                 recommendations.append(movie["title"])
-
-
-
-
 
     return recommendations
 
